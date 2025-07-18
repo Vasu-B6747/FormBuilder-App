@@ -17,6 +17,10 @@ formCtrl.list=async (req,res)=>{
 
 // POST new form
 formCtrl.create=async(req,res)=>{
+     const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ error: errors.array() });
+      }
     const body=req.body
     try{
         const form = new Form(body)
@@ -31,6 +35,10 @@ formCtrl.create=async(req,res)=>{
 
 // GET one form
 formCtrl.show=async (req,res)=>{
+     const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ error: errors.array() });
+      }
     const id =req.params.id
     try{
         const form=await Form.findById(id)
@@ -47,6 +55,10 @@ formCtrl.show=async (req,res)=>{
 
 // PUT update form
 formCtrl.update=async(req,res)=>{
+     const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ error: errors.array() });
+      }
     const id=req.params.id
     const body=req.body
     try{
@@ -63,6 +75,10 @@ formCtrl.update=async(req,res)=>{
 }
 //Delete form
 formCtrl.delete=async(req,res)=>{
+     const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ error: errors.array() });
+      }
     const id=req.params.id
     try{
         const form=await Form.findByIdAndDelete(id)

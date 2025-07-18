@@ -1,6 +1,9 @@
 import express from 'express'
 import configureDb from './config/configure.js'
+import { checkSchema } from 'express-validator'
 import formCtrl from './app/controllers/formController.js' 
+import { idValidationSchema } from './app/validators/idValidation.js'
+import formValidationSchema from './app/validators/formValidator.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
@@ -13,10 +16,10 @@ app.use(cors())
 
 //routes
 app.get('/forms',formCtrl.list)
-app.post('/form/create',formCtrl.create)
-app.put('/form/edit/:id',formCtrl.update)
-app.get('/form/:id',formCtrl.show)
-app.delete('/form/:id',formCtrl.delete)
+app.post('/form/create',checkSchema(formValidationSchema),formCtrl.create)
+app.put('/form/edit/:id',checkSchema(idValidationSchema),formCtrl.update)
+app.get('/form/:id',checkSchema(idValidationSchema),formCtrl.show)
+app.delete('/form/:id',checkSchema(idValidationSchema),formCtrl.delete)
 
 
 app.listen(port,()=>{
