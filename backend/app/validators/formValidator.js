@@ -1,4 +1,4 @@
-import Form from '../models/form-model.js'
+import Form from '../models/formModel.js'
 
 const formValidationSchema = {
   title: {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios from '../baseUrl'
 
 export default function ViewForm() {
   const { id } = useParams();
